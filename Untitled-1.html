@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTB指標研究所</title>
+    <style>
+        /* 網站背景設置為漸層黑 */
+        body {
+            background: linear-gradient(45deg, #333, #000);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* 頁面容器設置 */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        /* 左側導航欄 */
+        .sidebar {
+            width: 200px;
+            background-color: #222;
+            padding-top: 20px;
+            color: white;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+        .sidebar a:hover {
+            background-color: #444;
+        }
+        /* 內容區域 */
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            flex: 1;
+            color: white;
+            text-align: center; /* 添加這行，使內容區域的文本置中 */
+        }
+        /* 頁面頂部的公司名稱和 logo */
+        .header {
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .logo-container {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 200px; /* 調整容器寬度 */
+}
+
+.logo img {
+    position: relative;
+    transition: transform 0.5s;
+    height: 40px; /* 保持圖片原本高度 */
+    z-index: 1; /* 圖片在上 */
+}
+
+.logo span {
+    position: absolute;
+    top: 0;
+    left: 70px; /* 調整距離 */
+    color: white;
+    font-size: 24px;
+    z-index: 0; /* 文字在下 */
+    transition: opacity 0.5s, transform 0.5s;
+    white-space: nowrap; /* 確保文字不換行 */
+    opacity: 0;
+}
+
+.logo-container:hover img {
+    transform: translateX(-60px); /* 調整圖片左移的距離 */
+}
+
+.logo-container:hover span {
+    opacity: 1;
+}
+
+
+        /* 內容區域的文本 */
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        /* 新增的圖片方塊樣式 */
+        .image-box {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            background-color: #555;
+            display: inline-block;
+            transition: transform 0.3s;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-box:hover {
+            transform: scale(1.1);
+        }
+        /* 彈出視窗樣式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        @keyframes grow {
+            from {
+                transform: scale(0.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        .modal-content {
+            background: linear-gradient(45deg, #888, #ccc); /* 灰色漸層背景 */
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center; /* 修改這行，使彈出視窗內的文本置中 */
+            transform: scale(0.5);
+            animation: grow 0.3s ease forwards;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="20241027_001833_0000.png" alt="Logo">
+                <span>UTB</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 左側導航欄 -->
+        <div class="sidebar">
+            <a href="javascript:void(0);" onclick="showSection('intro')">產品介紹</a>
+            <a href="javascript:void(0);" onclick="showSection('features')">產品功能</a>
+            <a href="javascript:void(0);" onclick="showSection('about')">公司說明</a>
+        </div>
+
+        <!-- 內容區域 -->
+        <div class="content">
+            <div id="intro" class="section active">
+                <h2>產品介紹</h2>
+                <p>
+                    UTB主要研究加密貨幣交易指標，提供高品質的產品TV指標。<br>
+                    致力於達到最高的勝率又最便宜的指標。<br>
+                    以下三種指標供參考
+                </p>
+                
+                <!-- 新增的圖片方塊 -->
+                <div class="image-box" onclick="showModal('MF BOT V1', '產品1的詳盡資訊')"><img src="Screenshot_20241110_081847_TradingView.jpg" alt="Image 1"></div>
+                <div class="image-box" onclick="showModal('產品名稱2', '產品2的詳盡資訊')"><img src="image2.jpg" alt="Image 2"></div>
+                <div class="image-box" onclick="showModal('產品名稱3', '產品3的詳盡資訊')"><img src="image3.jpg" alt="Image 3"></div>
+            </div>
+
+            <div id="features" class="section">
+                <h2>產品功能</h2>
+                <p>我們的產品具有以下功能：</p>
+                <ul>
+                    <li>高度整合的系統設計</li>
+                    <li>使用者友好的操作介面</li>
+                    <li>強大的性能和穩定性</li>
+                    <li>可擴展的架構，支持未來的升級</li>
+                </ul>
+            </div>
+
+            <div id="about" class="section">
+                <h2>公司說明</h2>
+                <p>SpaceX 是一家美國民營航太公司，由伊隆·馬斯克於 2002 年創立，目標是降低太空運輸成本並最終實現火星殖民。SpaceX 透過技術創新，開發了可重複使用的獵鷹系列火箭和龍系列飛船，並正在積極研發下一代的星艦火箭和星鏈衛星系統。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 彈出視窗 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalInfo"></p>
+        </div>
+    </div>
+
+    <script>
+        // 顯示對應的內容區域
+        function showSection(sectionId) {
+            // 隱藏所有區域
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            // 顯示選中的區域
+            var activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+        }
+
+        // 顯示彈出視窗
+        function showModal(title, info) {
+            var modal = document.getElementById("myModal");
+            var modalTitle = document.getElementById("modalTitle");
+            var modalInfo = document.getElementById("modalInfo");
+
+            modalTitle.textContent = title;
+            modalInfo.textContent = info;
+            modal.classList.add("show");
+        }
+
+        // 關閉彈出視窗
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.classList.remove("show");
+        }
+    </script>
+
+</body>
+</html>

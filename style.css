@@ -1,0 +1,28 @@
+/* 產品圖片方塊的容器 */
+.image-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* 單個圖片方塊設置 */
+.image-box {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 圖片樣式 */
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 滑鼠移到方塊上時的放大效果 */
+.image-box:hover {
+    transform: scale(1.05);
+}
