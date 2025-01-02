@@ -44,7 +44,9 @@
             padding: 20px;
             flex: 1;
             color: white;
-            text-align: center; /* 添加這行，使內容區域的文本置中 */
+            text-align: center;
+            position: relative;
+            overflow-y: auto; /* 允許內容區域垂直滾動 */
         }
         /* 頁面頂部的公司名稱和 logo */
         .header {
@@ -54,47 +56,56 @@
             text-align: center;
         }
         .logo-container {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    width: 200px; /* 調整容器寬度 */
-}
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            width: 200px;
+        }
 
-.logo img {
-    position: relative;
-    transition: transform 0.5s;
-    height: 40px; /* 保持圖片原本高度 */
-    z-index: 1; /* 圖片在上 */
-}
+        .logo img {
+            position: relative;
+            transition: transform 0.5s;
+            height: 40px;
+            z-index: 1;
+        }
 
-.logo span {
-    position: absolute;
-    top: 0;
-    left: 70px; /* 調整距離 */
-    color: white;
-    font-size: 24px;
-    z-index: 0; /* 文字在下 */
-    transition: opacity 0.5s, transform 0.5s;
-    white-space: nowrap; /* 確保文字不換行 */
-    opacity: 0;
-}
+        .logo span {
+            position: absolute;
+            top: 0;
+            left: 70px;
+            color: white;
+            font-size: 24px;
+            z-index: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            white-space: nowrap;
+            opacity: 0;
+        }
 
-.logo-container:hover img {
-    transform: translateX(-60px); /* 調整圖片左移的距離 */
-}
+        .logo-container:hover img {
+            transform: translateX(-60px);
+        }
 
-.logo-container:hover span {
-    opacity: 1;
-}
-
+        .logo-container:hover span {
+            opacity: 1;
+        }
 
         /* 內容區域的文本 */
         .section {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute; /* 使用絕對定位確保每個區域位置不會影響其他區域 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            transform: translateY(10px); /* 初始位置微微向下 */
         }
         .section.active {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* 顯示時回到正常位置 */
         }
+
         /* 新增的圖片方塊樣式 */
         .image-box {
             width: 160px;
@@ -114,6 +125,7 @@
         .image-box:hover {
             transform: scale(1.1);
         }
+
         /* 彈出視窗樣式 */
         .modal {
             display: none;
@@ -143,13 +155,13 @@
             }
         }
         .modal-content {
-            background: linear-gradient(45deg, #888, #ccc); /* 灰色漸層背景 */
+            background: linear-gradient(45deg, #888, #ccc);
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
             max-width: 600px;
-            text-align: center; /* 修改這行，使彈出視窗內的文本置中 */
+            text-align: center;
             transform: scale(0.5);
             animation: grow 0.3s ease forwards;
         }
@@ -262,7 +274,5 @@
             modal.classList.remove("show");
         }
     </script>
-
 </body>
 </html>
-
