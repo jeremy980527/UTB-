@@ -89,21 +89,21 @@
             opacity: 1;
         }
 
-        /* 內容區域的文本 */
+        /* 內容區域過度動畫 */
         .section {
             opacity: 0;
             visibility: hidden;
-            position: absolute; /* 使用絕對定位確保每個區域位置不會影響其他區域 */
+            position: absolute; /* 絕對定位 */
             top: 0;
             left: 0;
             width: 100%;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            transform: translateY(10px); /* 初始位置微微向下 */
+            transition: opacity 0.7s ease-in-out, visibility 0.5s ease-in-out; /*動畫時間*/
+            transform: translateY(0px); /*本動畫 已廢*/
         }
         .section.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0); /* 顯示時回到正常位置 */
+            transform: translateY(0); /* 顯示時 重新定位 */
         }
 
         /* 新增的圖片方塊樣式 */
@@ -244,7 +244,7 @@
     <script>
         // 顯示對應的內容區域
         function showSection(sectionId) {
-            // 隱藏所有區域
+            // 隱藏所有區域 防止重疊
             var sections = document.querySelectorAll('.section');
             sections.forEach(function(section) {
                 section.classList.remove('active');
